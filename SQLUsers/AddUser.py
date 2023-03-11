@@ -1,22 +1,6 @@
-import mysql.connector
-import os
+def CreateUser(cursor):
+    username = input("Enter your Username: ")
+    password = input("Enter your Password: ")
 
-# Connect to MySQL server
-mydb = mysql.connector.connect(host="localhost", port="3306",
-                               user="jayzobalia", password="J@y447506003943",
-                               database="stockmarketdata")
-
-# Create a cursor object to execute SQL queries
-mycursor = mydb.cursor()
-
-# Execute SQL query to create user
-mycursor.execute("CREATE USER 'xyzz'@'localhost' IDENTIFIED BY 'jaylovesprisha'")
-
-# Grant necessary privileges to the user
-mycursor.execute("GRANT SELECT, INSERT ON stockmarketdata.* TO 'xyzz'@'localhost'")
-
-# Commit changes to the database
-mydb.commit()
-
-# Close the database connection
-mydb.close()
+    cursor.execute("CREATE USER '" + username + "'@'localhost' IDENTIFIED BY '" + password + "'")
+    cursor.execute("GRANT SELECT, INSERT ON stockmarketdata.* TO '" + username + "'@'localhost'")

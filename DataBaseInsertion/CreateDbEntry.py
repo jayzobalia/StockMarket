@@ -6,8 +6,8 @@ import os
 def create_entry(symbol, cursor):
     StockDataframe.get_df(symbol, "full")
     symbol = symbol.replace(".", "_")
-    csv_data = pd.read_csv("DataBaseInsertion\\Stock CSVs\\xx.csv", index_col="date")
-    os.remove("DataBaseInsertion\\Stock CSVs\\xx.csv")
+    csv_data = pd.read_csv("xx.csv", index_col="date")
+    os.remove("xx.csv")
 
     try:
         cursor.execute("CREATE TABLE `stockmarketdata`.`" + symbol + "` (`date` TIMESTAMP NOT NULL,`open` DOUBLE "
@@ -21,5 +21,6 @@ def create_entry(symbol, cursor):
             row = x[i].tolist()
             cursor.execute('INSERT INTO stockmarketdata.' + symbol + ' VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)',
                            row)
+
     except:
         print("Database Of This Company Already Exists")

@@ -11,4 +11,4 @@ def get_df(symbol, size):
     app = TimeSeries(os.getenv("API_KEY"), output_format='pandas')
     df = app.get_daily_adjusted(symbol, outputsize=size)
     df = df[0]
-    df.to_csv("DataBaseInsertion\\Stock CSVs\\xx.csv")
+    df.to_csv("xx.csv")
